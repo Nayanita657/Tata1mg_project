@@ -56,6 +56,7 @@ async def get_user_profile(username):
                     'updated at': data['updated_at']
                 }
                 return user
+
             else:
                 return {'error': 'User not found'}
 
