@@ -60,6 +60,7 @@ async def get_user_profile(username):
             else:
                 return {'error': 'User not found'}
 
+    print("checking git update")
 
 
 
