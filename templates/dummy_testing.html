@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>My Webpage</title>
+    </head>
+
+    <body>
+        <h1>User Comparison</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Bio</th>
+                <th>Followers</th>
+                <th>Following</th>
+                <th>Public Repos</th>
+                <th>Followers URL</th>
+                <th>Following URL</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Starred Repository</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in user.items() %}
+            <tr>
+                <td>{{ value['username'] }}</td>
+                <td>{{ value['name'] }}</td>
+                <td>{{ value['email'] }}</td>
+                <td>{{ value['bio'] }}</td>
+                <td>{{ value['followers'] }}</td>
+                <td>{{ value['following'] }}</td>
+                <td>{{ value['public_repos'] }}</td>
+                <td>{{ value['followers_url'] }}</td>
+                <td>{{ value['following_url'] }}</td>
+                <td>{{ value['created at'] }}</td>
+                <td>{{ value['updated at'] }}</td>
+                <td>{{ value['starred repository'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </body>
+
+</html>
