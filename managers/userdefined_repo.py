@@ -10,6 +10,7 @@ headers = {
     }
 
 
+'''
 def get_userdefined_repository(user_name, repository_name):
     url = f"https://api.github.com/repos/{user_name}/{repository_name}"
     response = requests.get(url, headers=headers)
@@ -35,18 +36,24 @@ def get_userdefined_repository(user_name, repository_name):
 
     else:
         return {'error': 'User not found'}
-'''
+    
+ '''
+
+
+
+
+
+
 
 async def get_userdefined_repository(user_name, repository_name):
     async with CachedSession(cache=SQLiteBackend('demo_cache')) as session:
         url = f"https://api.github.com/repos/{user_name}/{repository_name}"
-        async with session.get(url, headers=headers) as response:
+        async with session.get(url) as response:
             print(f'Is response coming from cache<userdefined_repo.py): {response.from_cache}')
         if response.status == 200:
             data = await response.json()
             contributor_url = data['contributors_url']
-            #contributor_response = requests.get(contributor_url, headers=headers)
-            async with session.get(contributor_url, headers=headers) as contributor_response:
+            async with session.get(contributor_url) as contributor_response:
                 contributor_data = await contributor_response.json()
                 contributor_count = 0
                 for temp in contributor_data:
@@ -64,6 +71,7 @@ async def get_userdefined_repository(user_name, repository_name):
             return final_result
 
         else:
-            return {'error': 'User not found'}
+            return {'error': 'Invalid username or repository name entered'}
 
-'''
+
+

@@ -143,3 +143,11 @@ async def compare(request):
         "starred repository": "accompanist"
     }
 }
+
+{% if data and data['List'] %}
+
+{% else %}
+        <div class="alert alert-danger mt-3" role="alert">
+            User not found or no repositories to display.
+        </div>
+        {% endif %}

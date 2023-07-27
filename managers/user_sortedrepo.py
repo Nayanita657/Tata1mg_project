@@ -49,19 +49,20 @@ async def get_user_sorted_repository(name, sorting_type):
         response = await get_user_repos_global(name)
         end_time3 = time.time()
         elapsed_time3 = end_time3 - start_time3
-        print(f"Function execution time API: {elapsed_time3:.6f} seconds")
+        #print(f"Function execution time API: {elapsed_time3:.6f} seconds")
         if response.status == 200:
             user_repos = await response.json()
             final_result = []
             start_time2 = time.time()
-            print('josn data length',len(user_repos))
+            #print('josn data length',len(user_repos))
             for temp in user_repos:
                 user_repo_name = temp['name']
-                user_defined_repo_info = get_userdefined_repository(name, user_repo_name)
+                user_defined_repo_info = await get_userdefined_repository(name, user_repo_name)
                 repo_name = user_defined_repo_info['Repository Name']
                 fork_count = user_defined_repo_info['Fork Count']
                 star_count = user_defined_repo_info['Star Count']
                 Recent_activity = user_defined_repo_info['Recent Activity']
+
                 temp=[]
                 temp.append(repo_name)
                 temp.append(fork_count)
@@ -81,11 +82,14 @@ async def get_user_sorted_repository(name, sorting_type):
                 final_result = sorted(final_result, key=lambda x: x[3], reverse=True)
             end_time2 = time.time()
             elapsed_time2 = end_time2 - start_time2
-            print(f"Function execution time after sorting: {elapsed_time2:.6f} seconds")
+            #print(f"Function execution time after sorting: {elapsed_time2:.6f} seconds")
+            return {"List": final_result, "Status Code": "200"}
 
-            result = json.dumps(final_result)
+        else:
+            return {'error': 'User not found'}
 
-            return result
+
+
 
 
 

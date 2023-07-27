@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Repository Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>User Repository Details</h1>
+        {% if data %}
+        <div class="card mt-3">
+            <div class="card-header">
+                <h3>{{ data['Repository Name'] }}</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong>Description:</strong> {{ data['Description'] }}</p>
+                <p class="card-text"><strong>Language:</strong> {{ data['Language'] }}</p>
+                <p class="card-text"><strong>Fork Count:</strong> {{ data['Fork Count'] }}</p>
+                <p class="card-text"><strong>Star Count:</strong> {{ data['Star Count'] }}</p>
+                <p class="card-text"><strong>Subscriber Count:</strong> {{ data['Subscriber Count'] }}</p>
+                <p class="card-text"><strong>Recent Activity:</strong> {{ data['Recent Activity'] }}</p>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-danger mt-3" role="alert">
+            User not found
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
